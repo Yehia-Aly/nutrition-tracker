@@ -28,7 +28,7 @@ A complete nutrition tracking application built from scratch with vanilla JavaSc
 
 ## 📸 Screenshots
 
-![BMR and Calorie Calculator interface showing input fields for age, weight, height, gender selection, and activity level dropdown, with results displaying maintenance calories of 3079, weight loss target of 2463, and weight gain target of 3387](image.png)
+![image alt] {https://github.com/Yehia-Aly/nutrition-tracker/blob/1c413cbd2ebd72ec096c353d9bdd76a3e33cdd29/Screenshot%20(270).png}
 
 
 ## 🎯 How It Works
