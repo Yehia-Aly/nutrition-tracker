@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrition Tracker - BMR Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-apple-alt"></i> Nutrition Tracker</h1>
+            <p class="subtitle">Track your macros • Log your meals • Crush your goals</p>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="calculator">
+                <i class="fas fa-calculator"></i> Calculator
+            </button>
+            <button class="tab-btn" data-tab="food-log">
+                <i class="fas fa-utensils"></i> Food Log
+            </button>
+            <button class="tab-btn" data-tab="progress">
+                <i class="fas fa-chart-line"></i> Progress
+            </button>
+        </div>
+
+        <main>
+            <!-- ===== CALCULATOR TAB ===== -->
+            <div class="tab-content active" id="calculator-tab">
+                <div class="calculator-card">
+                    <h2><i class="fas fa-calculator"></i> BMR & Calorie Calculator</h2>
+                    <p class="card-subtitle">Find out how many calories you need daily</p>
+                    
+                    <form id="bmrForm">
+                        <div class="form-group">
+                            <label for="age"><i class="fas fa-birthday-cake"></i> Age</label>
+                            <input type="number" id="age" min="15" max="100" placeholder="Enter your age" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="weight"><i class="fas fa-weight"></i> Weight (kg)</label>
+                                <input type="number" id="weight" min="30" max="200" placeholder="e.g. 70" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="height"><i class="fas fa-ruler-vertical"></i> Height (cm)</label>
+                                <input type="number" id="height" min="100" max="250" placeholder="e.g. 175" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label><i class="fas fa-venus-mars"></i> Gender</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="male" checked>
+                                    <span class="radio-custom"></span>
+                                    Male
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="gender" value="female">
+                                    <span class="radio-custom"></span>
+                                    Female
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="activity"><i class="fas fa-running"></i> Activity Level</label>
+                            <select id="activity">
+                                <option value="sedentary">Sedentary (little or no exercise)</option>
+                                <option value="light">Light (exercise 1-3 days/week)</option>
+                                <option value="moderate" selected>Moderate (exercise 3-5 days/week)</option>
+                                <option value="active">Active (exercise 6-7 days/week)</option>
+                                <option value="veryActive">Very Active (hard exercise & physical job)</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="calculate-btn">
+                            <i class="fas fa-bolt"></i> Calculate My Calories
+                        </button>
+                    </form>
+                    
+                    <div id="results" class="hidden">
+                        <h3><i class="fas fa-chart-line"></i> Your Daily Calorie Needs</h3>
+                        
+                        <div class="results-grid">
+                            <div class="result-card maintenance">
+                                <h4>Maintenance</h4>
+                                <p class="calories" id="maintenance">0</p>
+                                <p class="description">Stay at current weight</p>
+                            </div>
+                            
+                            <div class="result-card loss">
+                                <h4>Weight Loss</h4>
+                                <p class="calories" id="weightLoss">0</p>
+                                <p class="description">Lose ~0.5kg/week</p>
+                            </div>
+                            
+                            <div class="result-card gain">
+                                <h4>Weight Gain</h4>
+                                <p class="calories" id="weightGain">0</p>
+                                <p class="description">Gain ~0.25kg/week</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bmr-info">
+                            <p><i class="fas fa-info-circle"></i> Your BMR (Basal Metabolic Rate): <strong id="bmrValue">0</strong> calories/day</p>
+                            <p class="small">This is how many calories you burn at complete rest</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===== FOOD LOG TAB ===== -->
+            <div class="tab-content" id="food-log-tab">
+                <div class="food-log-card">
+                    <h2><i class="fas fa-utensils"></i> Today's Food Log</h2>
+                    
+                    <!-- Add Food Form -->
+                    <div class="add-food-form">
+                        <h3><i class="fas fa-plus-circle"></i> Add Food</h3>
+                        <div class="form-group">
+                            <label for="food-search">Search Food:</label>
+                            <input type="text" id="food-search" placeholder="Type to search foods...">
+                            <div id="food-results" class="food-results"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="servings">Servings:</label>
+                            <input type="number" id="servings" min="0.5" max="10" step="0.5" value="1">
+                        </div>
+                        
+                        <button id="add-food-btn" class="add-btn">
+                            <i class="fas fa-plus"></i> Add to Log
+                        </button>
+                    </div>
+                    
+                    <!-- Today's Log -->
+                    <div class="todays-log">
+                        <h3><i class="fas fa-list"></i> Today's Meals</h3>
+                        <div id="food-log-list">
+                            <p class="empty-message">No foods logged yet. Add some above!</p>
+                        </div>
+                        
+                        <!-- Daily Totals -->
+                        <div class="daily-totals">
+                            <h3><i class="fas fa-chart-pie"></i> Daily Totals</h3>
+                            <div class="totals-grid">
+                                <div class="total-card">
+                                    <h4>Calories</h4>
+                                    <p class="total-value" id="total-calories">0</p>
+                                </div>
+                                <div class="total-card">
+                                    <h4>Protein</h4>
+                                    <p class="total-value" id="total-protein">0g</p>
+                                </div>
+                                <div class="total-card">
+                                    <h4>Carbs</h4>
+                                    <p class="total-value" id="total-carbs">0g</p>
+                                </div>
+                                <div class="total-card">
+                                    <h4>Fat</h4>
+                                    <p class="total-value" id="total-fat">0g</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ===== PROGRESS TAB ===== -->
+            <div class="tab-content" id="progress-tab">
+                <div class="coming-soon">
+                    <h2><i class="fas fa-tools"></i> Coming Soon!</h2>
+                    <p>Weight tracking, progress charts, and analytics are in development.</p>
+                    <p style="margin-top: 20px;">
+                        <i class="fas fa-lightbulb" style="color: #f1c40f;"></i> 
+                        Next up: Track your gym weights and body measurements!
+                    </p>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Built with <i class="fas fa-heart" style="color: #ff4757;"></i> by You • Let's get shredded!</p>
+        </footer>
+    </div>
+    
+    <!-- Load food database FIRST -->
+    <script src="food-data.js"></script>
+    <!-- Then load main JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
