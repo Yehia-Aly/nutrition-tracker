@@ -29,6 +29,7 @@ A complete nutrition tracking application built from scratch with vanilla JavaSc
 ## 📸 Screenshots
 
 ![image alt](https://github.com/Yehia-Aly/nutrition-tracker/blob/1c413cbd2ebd72ec096c353d9bdd76a3e33cdd29/Screenshot%20(270).png)
+![image alt](https://github.com/Yehia-Aly/nutrition-tracker/blob/b06ed49630feaaac4a0da2af921f8a96d8ce641e/Screenshot%20(271).png)
 
 
 ## 🎯 How It Works
