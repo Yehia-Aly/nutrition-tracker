@@ -57,3 +57,35 @@ node server.js
 
 # Open browser and go to:
 http://localhost:3000
+
+🔧 API Endpoints
+POST /api/calculate-bmr - Calculate BMR based on user stats
+
+GET /api/test - Test if server is running
+
+🎨 Future Features
+User authentication with MongoDB
+
+Weight tracking and progress charts
+
+Custom food creation
+
+Meal categories (Breakfast, Lunch, Dinner)
+
+Weekly/Monthly reports
+
+Image recognition for food logging
+
+📝 License
+Feel free to use this code for learning and inspiration! 
+If you build something cool with it, give credit where it's due 🙏
+
+📬 Contact
+Yehia Aly - yehiiaaly@gmail.com
+
+Project Link: https://github.com/Yehia-Aly/nutrition-tracker
+
+🙏 Acknowledgments
+Built while learning full-stack JavaScript
+
+Inspired by MacroFactor and MyFitnessPal
